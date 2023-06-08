@@ -11,7 +11,7 @@ namespace Standard.AI.OpenAI.Tests.Integration.APIs.FineTunes
 {
     public partial class FineTuneTests
     {
-        [Fact(Skip = "This test is only for releases")]
+        [ReleaseCandidateFact]
         public async Task ShouldSubmitFineTuneAsync()
         {
             // given

@@ -10,7 +10,7 @@ namespace Standard.AI.OpenAI.Tests.Integration.APIs.AIModels
 {
     public partial class AIModelsApiTests
     {
-        [Fact(Skip = "This test is only for releases")]
+        [ReleaseCandidateFact]
         public async Task ShouldRetrieveAIModelByNameAsync()
         {
             // given

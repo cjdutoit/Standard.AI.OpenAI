@@ -10,7 +10,7 @@ namespace Standard.AI.OpenAI.Tests.Integration.APIs.ChatCompletions
 {
     public partial class ChatCompletionsApiTests
     {
-        [Fact(Skip = "This test is only for releases")]
+        [ReleaseCandidateFact]
         public async Task ShouldSendChatCompletionAsync()
         {
             // given

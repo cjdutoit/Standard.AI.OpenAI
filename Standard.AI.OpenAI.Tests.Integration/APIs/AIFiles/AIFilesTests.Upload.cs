@@ -11,7 +11,7 @@ namespace Standard.AI.OpenAI.Tests.Integration.APIs.AIFiles
 {
     public partial class AIFilesTests
     {
-        [Fact(Skip = "This test is only for releases")]
+        [ReleaseCandidateFact]
         public async Task ShouldUploadFileAsync()
         {
             // given

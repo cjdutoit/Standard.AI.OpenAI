@@ -9,20 +9,33 @@ on:
 jobs:
   build:
     runs-on: windows-latest
-    env:
-      ApiKey: ${{ secrets.APIKEY }}
-      OrgId: ${{ secrets.ORGID }}
     steps:
     - name: Pulling Code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
     - name: Installing .NET
-      uses: actions/setup-dotnet@v1
+      uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 7.0.201
-        include-prerelease: false
     - name: Restoring Packages
       run: dotnet restore
     - name: Building Solution
       run: dotnet build --no-restore
     - name: Running Tests
       run: dotnet test --no-build --verbosity normal
+    env:
+      ApiKey: ${{ secrets.APIKEY }}
+      OrgId: ${{ secrets.ORGID }}
+      STANDARD_AI_OPENAI_IS_RELEASE_CANDIDATE: >-
+        ${{
+          (
+            github.event_name == 'pull_request' && 
+            startsWith(github.event.pull_request.title, 'RELEASES:') && 
+            contains(github.event.pull_request.labels.*.name, 'RELEASES')
+          )
+          ||
+          (
+            github.event_name == 'push' && 
+            startsWith(github.event.head_commit.message, 'RELEASES:') && 
+            startsWith(github.ref_name, 'RELEASE')
+          )
+        }}
