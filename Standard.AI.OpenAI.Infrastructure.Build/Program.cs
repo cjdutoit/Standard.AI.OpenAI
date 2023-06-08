@@ -84,6 +84,17 @@ namespace Standard.AI.OpenAI.Infrastructure.Build
                             }
                         }
                     },
+                    {
+                        "add_tag",
+                        new TagJob(
+                            runsOn: BuildMachines.WindowsLatest, 
+                            dependsOn: "build", 
+                            projectRelativePath: "Standard.AI.OpenAI\\Standard.AI.OpenAI.csproj",
+                            githubToken: "${{ secrets.PAT_FOR_TAGGING }}",
+                            versionEnvironmentVariableName: "version_number",
+                            packageReleaseNotesEnvironmentVariable: "package_release_notes",
+                            branchName: "main")
+                    }
                 }
             };
 
