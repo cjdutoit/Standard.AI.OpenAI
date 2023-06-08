@@ -94,6 +94,13 @@ namespace Standard.AI.OpenAI.Infrastructure.Build
                             versionEnvironmentVariableName: "version_number",
                             packageReleaseNotesEnvironmentVariable: "package_release_notes",
                             branchName: "main")
+                    },
+                    {
+                        "publish",
+                        new PublishJob(
+                            runsOn: BuildMachines.WindowsLatest,
+                            dependsOn: "add_tag",
+                            nugetApiKey: "${{ secrets.NUGET_API_KEY }}")
                     }
                 }
             };
